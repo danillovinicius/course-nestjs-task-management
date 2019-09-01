@@ -52,6 +52,12 @@ $ brew services start mongodb
 $ brew services stop mongodb
 ````
 
+> ✔ Initialize with env variables
+
+````shell
+$ PORT=3005 yarn start:dev
+````
+
 > ✔
 
 ````shell

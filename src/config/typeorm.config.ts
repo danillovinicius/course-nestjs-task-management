@@ -1,11 +1,14 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import * as config from 'config';
+
+const dbConfig = config.get('db');
 
 export const typeOrmConfigMongodb: TypeOrmModuleOptions = {
-  type: 'mongodb',
-  host: 'localhost',
-  port: 27017,
+  type: dbConfig.get('type'),
+  host: process.env.APP_HOSTNAME || dbConfig.get('host'),
+  port: process.env.APP_PORT || dbConfig.get('port'),
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  database: 'taskmanagement',
+  database: process.env.APP_DATABASE || dbConfig.get('database'),
   synchronize: true,
   useNewUrlParser: true,
   logging: true,
